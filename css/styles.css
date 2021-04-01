@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Barlow';
     font-weight: 400;
-    src: local("Barlow Regular"), local("Barlow-Regular"), url("assets/fonts/Barlow-Regular.ttf") format('truetype');
+    src: local("Barlow Regular"), local("Barlow-Regular"), url("../assets/fonts/Barlow-Regular.ttf") format('truetype');
 }
 
 
@@ -16,6 +16,7 @@ body, .header {
 }
 
 .flex-center,
+.flex-end,
 .flex-space-around,
 .flex-space-between {
     display: flex;
@@ -32,6 +33,9 @@ body, .header {
 
 .flex-center {
     justify-content: center;
+}
+.flex-end {
+    justify-content: flex-end;
 }
 
 .header {
@@ -80,13 +84,8 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 20px;
     background: red;
     padding-right: 15px;
-    background: url("assets/images/search-close.svg") no-repeat right center #000000;
+    background: url("../assets/images/search-close.svg") no-repeat right center #000000;
     background-origin: content-box;
-}
-
-.content {
-    margin-top: 50px;
-    padding: 20px;
 }
 
 .header select {
@@ -145,6 +144,7 @@ input:focus ,
     position: relative;
     pointer-events: all;
     background: #0F0F0F;
+    text-transform: capitalize;
 }
 
 .select input {
@@ -157,7 +157,6 @@ input:focus ,
     order: 1;
     z-index: 2;
     background :#000;
-    color: #fff;
     border-top: none;
     position: relative;
     border-radius: 4px;
@@ -170,10 +169,10 @@ input:focus ,
 }
 
 .select input:checked + label:after {
-    content: url("assets/images/select-arrow.svg");
+    content: url("../assets/images/select-arrow.svg");
     position: absolute;
     right: 15px;
-    top: 5px;
+    top: 2px;
     pointer-events: none;
     z-index: 3;
     transition: all 0.5s ease 0s;
@@ -181,7 +180,7 @@ input:focus ,
 
 .select:focus input:checked + label:after {
     transform: rotate(180deg);
-    top: 8px;
+    top: 5px;
 }
 
 .select input:checked + label:before {
@@ -191,4 +190,51 @@ input:focus ,
     width: 40px;
     content: '';
     background: #000;
+}
+
+/** CONTENT **/
+
+.content {
+    margin-top: 75px;
+    padding: 20px;
+    color: white;
+    width: 90%;
+}
+
+.content .content-title {
+    color: #7e7e7e;
+    line-height: 0.1em;
+    border-bottom: 1px solid #424242; 
+}
+
+.content .content-title span {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #1B1B1B;
+    padding: 0 10px;
+}
+
+.content .row {
+    margin: 40px 0;
+}
+
+.content .voice-container {
+    margin: 5px 0;
+    flex-direction: column;
+}
+
+.content .voice-container .voice-image-container {
+    background: #D2D2D2;
+    border-radius: 50%;
+}
+.content .voice-container .voice-label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #D2D2D2;
+}
+
+.row>* {
+    padding: 0;
 }

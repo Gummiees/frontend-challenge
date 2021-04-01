@@ -7,7 +7,7 @@
 start();
 
 const DEFAULT_TAG_NAME = 'tag-name';
-const DEFAULT_OPTION = `<input class="selectopt" name="tag-select" type="radio" id="${DEFAULT_TAG_NAME}"><label for="${DEFAULT_TAG_NAME}" class="option">${capitalize(DEFAULT_TAG_NAME)}</label>`;
+const DEFAULT_OPTION = `<input class="selectopt" name="tag-select" type="radio" id="${DEFAULT_TAG_NAME}"><label for="${DEFAULT_TAG_NAME}" class="option">${DEFAULT_TAG_NAME}</label>`;
 
 async function start() {
     const voices = await getVoices();
@@ -53,17 +53,7 @@ function injectTags(tags) {
     const tagSelect = $('#tag-select');
     if (tagSelect) {
         const options = [];
-        tags.forEach(tag => {
-            // Tried to capitalize the letter via CSS with '::first-letter' and 'transform: uppercase', but it wouldn't work since it has a ':before'.
-            options.push(DEFAULT_OPTION.replaceAll(DEFAULT_TAG_NAME, tag).replaceAll(capitalize(DEFAULT_TAG_NAME), capitalize(tag)));
-        });
-    
+        tags.forEach(tag => options.push(DEFAULT_OPTION.replaceAll(DEFAULT_TAG_NAME, tag)));
         tagSelect.append(options);
     }
 }
-
-/** Capitalizes the first letter of a string. */
-function capitalize(s) {
-    if (typeof s !== 'string') return '';
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }
