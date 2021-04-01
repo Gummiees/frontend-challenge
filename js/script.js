@@ -12,8 +12,14 @@ const DEFAULT_VOICE_IMG = 'voice-img';
 const DEFAULT_VOICE_NAME = 'voice-name';
 const DEFAULT_OPTION = `<input class="selectopt" name="tag-select" type="radio" id="${DEFAULT_TAG_NAME}"><label for="${DEFAULT_TAG_NAME}" class="option">${DEFAULT_TAG_NAME}</label>`;
 const DEFAULT_VOICE = `
-    <div class="flex-center voice-container col-4 col-lg-2">
-        <img id="${DEFAULT_VOICE_ID}" class="voice-image-container" src="assets/images/${DEFAULT_VOICE_IMG}" alt="Voice image for '${DEFAULT_VOICE_NAME}'" />
+
+    <div class="flex-center voice-container col-6 col-sm-4 col-md-3 col-xl-2">
+        <div class="voice-image-container">
+            <div class="fav-icon-container flex-center">
+                <div class="fav-icon flex-center"></div>
+            </div>
+            <img id="${DEFAULT_VOICE_ID}" src="assets/images/${DEFAULT_VOICE_IMG}" alt="Voice image for '${DEFAULT_VOICE_NAME}'" />
+        </div>
         <p class="voice-label">${DEFAULT_VOICE_NAME}</p>
     </div>
 `;
