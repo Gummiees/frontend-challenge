@@ -32,7 +32,7 @@ let windowLoaded = false;
 /** Contains the raw data from the JSON file. It's necessary for it to be global. */
 let voices = [];
 
-// No need to wait for the window to load to read the JSON file, we can do that while it renders.
+// No need to wait for the window to load to read the JSON file, I can do that while it renders.
 getVoices();
 
 window.onload = () => {
@@ -43,9 +43,9 @@ window.onload = () => {
     }
 };
 
-// 'getVoices' will dispatch an event, and here we listen to it.
+// 'getVoices' will dispatch an event, and here I listen to it.
 document.addEventListener(EVENT_NAME, (voices) => {
-    // The event has been dispatched, meaning the JSON has been read. If the window has also been loaded, we can start processing the data obtained.
+    // The event has been dispatched, meaning the JSON has been read. If the window has also been loaded, I can start processing the data obtained.
     if (windowLoaded) {
         processData();
     }
@@ -75,7 +75,7 @@ function processTags() {
 /**
  * Gets the tags for the voices array. Returns a Set of strings containing the tags.
  * 
- * At first I made this function to return an array, not a set. Then I realized that using a tag in this case, where we don't want any element
+ * At first I made this function to return an array, not a set. Then I realized that using a tag in this case, where I don't want any element
  * repeated, using a Set made the code easier to read and reduced the size of the function. The old function can be found on the README.md.
  */
 function getTags() {
