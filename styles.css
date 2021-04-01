@@ -106,7 +106,7 @@ input:focus ,
 
 .select {
     height: 30px;
-    min-width: 125px;
+    min-width: 160px;
     margin-left: 15px;
     display: flex;
     flex-direction: column;
