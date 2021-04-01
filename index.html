@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--
+        <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+        <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+    -->
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <title>Frontend challenge</title>
+</head>
+<body>
+    <div class="header flex-space-between">
+        <div class="search-bar flex-center">
+            <span class="search-icon flex-center">
+                <img src="assets/images/search.svg" alt="Search icon">
+            </span>
+            <input type="search" aria-label="Search" aria-describedby="search-addon" />
+        </div>
+        <div class="container flex-center">
+            <div class="categories flex-center">
+                <span class="left-header-icon flex-center">
+                    <img src="assets/images/filter.svg" alt="Filter icon">
+                </span>
+                <div class="select" id="tag-select" tabindex="1">
+                    <input class="selectopt" name="tag-select" type="radio" id="all">
+                    <label for="all" class="option">All</label>
+                    <input class="selectopt" name="tag-select" type="radio" id="human">
+                    <label for="human" class="option">Human</label>
+                    <input class="selectopt" name="tag-select" type="radio" id="robotic" checked>
+                    <label for="robotic" class="option">Robotic</label>
+                    <input class="selectopt" name="tag-select" type="radio" id="devices">
+                    <label for="devices" class="option">Devices</label>
+                    <input class="selectopt" name="tag-select" type="radio" id="misc">
+                    <label for="misc" class="option">Misc</label>
+                  </div>
+            </div>
+            <div class="order-selector flex-center">
+                <span class="left-header-icon flex-center">
+                    <img src="assets/images/order.svg" alt="Filter icon">
+                </span>
+                <div class="select" id="order-select" tabindex="1">
+                    <input class="selectopt" name="order-select" type="radio" id="popular">
+                    <label for="popular" class="option">Popular</label>
+                    <input class="selectopt" name="order-select" type="radio" id="newest" checked>
+                    <label for="newest" class="option">Newest</label>
+                  </div>
+            </div>
+            <div class="random-button">
+                <span class="left-header-icon flex-center">
+                    <img src="assets/images/button-random.svg" alt="Filter icon">
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        Hello world!
+    </div>
+</body>
+</html>

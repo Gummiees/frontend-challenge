@@ -1,0 +1,194 @@
+@font-face {
+    font-family: 'Barlow';
+    font-weight: 400;
+    src: local("Barlow Regular"), local("Barlow-Regular"), url("assets/fonts/Barlow-Regular.ttf") format('truetype');
+}
+
+
+body, input /*, select */ {
+    font-family: 'Barlow', sans-serif;
+    background-color: #1B1B1B;
+    height: 100%;
+}
+
+body, .header {
+    margin: 0 20%;
+}
+
+.flex-center,
+.flex-space-around,
+.flex-space-between {
+    display: flex;
+    align-items: center;
+}
+
+.flex-space-around {
+    justify-content: space-around;
+}
+
+.flex-space-between {
+    justify-content: space-between;
+}
+
+.flex-center {
+    justify-content: center;
+}
+
+.header {
+    width: 60%;
+    position: fixed;
+    height: 50px;
+    padding: 5px;
+    top: 0;
+    left: 0;
+}
+
+.header {
+    padding: 5px;
+}
+
+.header .search-bar,
+.header .search-bar input {
+    color: white;
+}
+
+.header .search-bar {
+    background-color: black;
+    border-radius: 40px;
+    height: 34px;
+    min-width: 250px;
+}
+
+.header .search-bar .search-icon {
+    height: 20px;
+    position: absolute;
+    left: 5px;
+    background: transparent;
+}
+
+.header .search-bar input {
+    background-color: transparent;
+    border: none;
+    margin-left: 60px;
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+}
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    background: red;
+    padding-right: 15px;
+    background: url("assets/images/search-close.svg") no-repeat right center #000000;
+    background-origin: content-box;
+}
+
+.content {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.header select {
+    margin-left: 5px;
+}
+
+.header .order-selector {
+    margin: 0 30px;
+}
+
+input:focus ,
+.select:focus {
+    outline-width: 0;
+}
+
+/* SELECT **/
+
+.select {
+    height: 30px;
+    min-width: 125px;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.select .option {
+    color: #9c9c9c;
+    padding: 0 30px 0 20px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border-top: #1B1B1B solid 1px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+    order: 2;
+    z-index: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.select .option:hover {
+    color: #fff;
+}
+
+.select:focus .option:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.select:focus .option {
+    position: relative;
+    pointer-events: all;
+    background: #0F0F0F;
+}
+
+.select input {
+    opacity: 0;
+    position: absolute;
+    left: -99999px;
+}
+
+.select input:checked + label {
+    order: 1;
+    z-index: 2;
+    background :#000;
+    color: #fff;
+    border-top: none;
+    position: relative;
+    border-radius: 4px;
+}
+
+.select:focus input:checked + label {
+    background :#000;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.select input:checked + label:after {
+    content: url("assets/images/select-arrow.svg");
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    pointer-events: none;
+    z-index: 3;
+    transition: all 0.5s ease 0s;
+}
+
+.select:focus input:checked + label:after {
+    transform: rotate(180deg);
+    top: 8px;
+}
+
+.select input:checked + label:before {
+    position: absolute;
+    right: 0;
+    height: 30px;
+    width: 40px;
+    content: '';
+    background: #000;
+}
