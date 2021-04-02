@@ -14,6 +14,20 @@ https://gummiees.github.io/frontend-challenge/
   
 ## EXTRAS
 
+### CODING PROCESS
+
+The steps I made was first do the mockup on plain HTML + CSS. Then converted to CSS3 variables. After that, I started with the JavaScript. While working with JavaScript, I also started to transform the CSS for mobile, doing 'mobile-first', so the media queries were not made with `max-with`, but with `min-width`.
+
+### MOBILE CSS
+
+#### FAV BUTTON
+
+The fav button was supposed to appear on hover, and that is how it works for non-touchable screens. However, if the screen is touchable, while is true that you can simulate the 'hover' effect by a long press over the element on a touchable screen, I found that to be counter intuitive. Not only that, but it also selected the voice, which in a real case would not be the desired effect. Also, the user might not have an easy time to find out that they can add to favourites by long pressing the voice, that means that it will need an introduction text explaining so, which basically means bad design. Furthermore, if you long press, the device thinks you want to save the voice image. Again, bad design.
+
+After realizing all of that, it was clear that it had to be changed, and I went for the easier step for both the user and me, always show the fav button on touchable screens. 
+
+### CHANGED FUNCIONALITIES
+
 At first I made the `getTags` function to return an Array, not a Set. Then I realized that, since I don't want any element repeated, using a Set made the code easier to read, and reduced the size of the function.
 
 This is the older version:
