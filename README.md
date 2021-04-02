@@ -7,7 +7,6 @@ I tested the code for Chrome, Firefox, Edge and Opera (latest versions for each)
 https://gummiees.github.io/frontend-challenge/
 ## TODO
 
-- Filter by tags should also affect favourites.
 - Functionality on header buttons.
 - Functionality on search bar.
 - Transition and some CSS transform when adding/removing favourites.

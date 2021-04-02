@@ -273,10 +273,11 @@ function addFav(id, element) {
     return voice;
 }
 
-function removeFav(id, element) {
+/** Removes the id from the fav array and removes the class 'selected' from the pro list. */
+function removeFav(id) {
     const favVoice = favVoices.find(voice => voice.id === id);
     favVoices.splice(favVoices.indexOf(favVoice), 1);
-    $(element).find('.fav-icon').removeClass('selected');
+    $(`.pro-container .${PREFIX_ID}${id} .fav-icon-container .fav-icon`).removeClass('selected');
     return favVoice;
 }
 
