@@ -9,6 +9,8 @@ https://gummiees.github.io/frontend-challenge/
 
 - Transition and some CSS transform when adding/removing favourites.
 - Header must be responsive.
+- Collapse panels on mobile version.
+- Show fav button on mobile version.
   
 ## EXTRAS
 

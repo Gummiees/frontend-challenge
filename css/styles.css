@@ -113,9 +113,6 @@ input:focus,
     outline-width: 0;
 }
 
-.icon.selected {
-}
-
 /* SELECT **/
 
 .select {
@@ -251,6 +248,7 @@ input:focus,
 .fav-icon-container {
     transition: opacity 0.25s ease-in-out;
 }
+
 .content .voice-container .fav-icon-container {
     position: absolute;
     top: 0;
@@ -333,6 +331,13 @@ input:focus,
 
 .row > * {
     padding: 0;
+}
+
+/* smartphones, touchscreens */
+@media (hover: none) and (pointer: coarse) {
+    .content .voice-container .fav-icon-container {
+        opacity: 1;
+    }
 }
 
 @media (min-width: 1200px) {
