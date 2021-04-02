@@ -211,6 +211,7 @@ function onTagClicked() {
         setTimeout(() => {
             currentTag = $('input[name=tag-select]:checked').val();
             filteredVoices = filterVoicesByTag(voices, 'pro-container');
+            filteredFavVoices = filterVoicesByTag(favVoices, 'favourite-container');
         });
       });
 }
