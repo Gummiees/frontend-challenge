@@ -201,7 +201,9 @@ function injectVoices(container, voices) {
 
             // If we are injecting favourites, then it has to be already selected.
             if (container === 'favourite-container') {
-                $(`.${container} .${PREFIX_ID}${voice.id} .fav-icon`).addClass('selected');
+                $(`.${PREFIX_ID}${voice.id} .fav-icon`).each(function () {
+                    $(this).addClass('selected');
+                });
                 // Check if the one from the non-favourites is selected.
                 if ($(`.pro-container .${PREFIX_ID}${voice.id}`).classList().includes('selected')) {
                     $(`.${container} .${PREFIX_ID}${voice.id}`).addClass('selected');
