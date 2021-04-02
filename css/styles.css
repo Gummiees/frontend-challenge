@@ -241,11 +241,11 @@ input:focus ,
 .content .voice-container.selected .voice-image-container {
     background: linear-gradient(45deg, var(--selected-color) 0%, var(--selected-light-color) 100%);
 }
-.content .voice-container .voice-image-container,
-.content .voice-container .voice-image-container .fav-icon-container {
-    transition: visibility 0.15s, opacity 0.15s, background-color 0.15s ease-in-out;
+
+.content .voice-container .fav-icon-container {
+    transition: opacity 0.25s ease-in-out;
 }
-.content .voice-container .voice-image-container .fav-icon-container {
+.content .voice-container .fav-icon-container {
     position: absolute;
     top: 0;
     right: 15%;
@@ -253,10 +253,9 @@ input:focus ,
     width: 30px;
     background: var(--light-color);
     border-radius: 50%;
-    visibility: hidden;
     opacity: 0;
 }
-.content .voice-container .voice-image-container .fav-icon-container .fav-icon {
+.content .voice-container .fav-icon-container .fav-icon {
     background-color: var(--light-color);
     width: 15px;
     height: 15px;
@@ -264,17 +263,16 @@ input:focus ,
     mask: url("../assets/images/voice-favourite-off.svg") no-repeat center;
 }
 
-.content .voice-container .voice-image-container:hover,
-.content .voice-container .voice-image-container:hover .fav-icon-container {
+.content .voice-container .voice-image-container.hovered,
+.content .voice-container .fav-icon-container.hovered {
     background-color: white;
 }
 
-.content .voice-container .voice-image-container:hover .fav-icon-container {
-    visibility: visible;
+.content .voice-container .fav-icon-container.hovered {
     opacity: 1;
 }
 
-.content .voice-container .voice-image-container:hover .fav-icon-container .fav-icon.selected {
+.content .voice-container .fav-icon-container.hovered .fav-icon.selected {
     background-color: var(--selected-color);
 }
 
@@ -311,7 +309,7 @@ input:focus ,
         text-align: start;
     }
 
-    .content .voice-container .voice-image-container .fav-icon-container {
+    .content .voice-container .fav-icon-container {
         right: 25px;
     }
 

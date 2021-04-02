@@ -7,6 +7,12 @@ I tested the code for Chrome, Firefox, Edge and Opera (latest versions for each)
 https://gummiees.github.io/frontend-challenge/
 ## TODO
 
+- Filter by tags should also affect favourites.
+- Functionality on header buttons.
+- Functionality on search bar.
+- Transition and some CSS transform when adding/removing favourites.
+- Header must be responsive.
+  
 ## EXTRAS
 
 At first I made the `getTags` function to return an Array, not a Set. Then I realized that, since I don't want any element repeated, using a Set made the code easier to read, and reduced the size of the function.
