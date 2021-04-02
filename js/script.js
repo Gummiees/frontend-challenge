@@ -11,19 +11,32 @@ const DEFAULT_TAG_NAME = 'tag-name';
 const DEFAULT_VOICE_ID = 'voice-id';
 const DEFAULT_VOICE_IMG = 'voice-img';
 const DEFAULT_VOICE_NAME = 'voice-name';
+const PRO_CONTAINER = 'pro-container';
+const FAV_CONTAINER = 'favourite-container';
+const VOICE_IMAGE_CONTAINER = 'voice-image-container';
+const FAV_ICON_CONTAINER = 'fav-icon-container';
+const FAV_ICON = 'fav-icon';
+const SORT_ICON = 'sort-icon';
 const DEFAULT_OPTION = `<input class="selectopt" name="tag-select" type="radio" id="${DEFAULT_TAG_NAME}" value="${DEFAULT_TAG_NAME}"><label for="${DEFAULT_TAG_NAME}" class="option">${DEFAULT_TAG_NAME}</label>`;
 const DEFAULT_VOICE = `
 
     <div class="flex-center voice-container col-6 col-sm-4 col-md-3 col-xl-2 ${PREFIX_ID}${DEFAULT_VOICE_ID}">
-        <div class="icon-container fav-icon-container flex-center">
-            <div id="fav-icon" class="icon fav-icon flex-center"></div>
+        <div class="icon-container ${FAV_ICON_CONTAINER} flex-center">
+            <div id="${FAV_ICON}" class="icon ${FAV_ICON} flex-center"></div>
         </div>
-        <div class="voice-image-container">
+        <div class="${VOICE_IMAGE_CONTAINER}">
             <img src="assets/images/${DEFAULT_VOICE_IMG}" alt="Voice image for '${DEFAULT_VOICE_NAME}'" />
         </div>
         <p class="voice-label">${DEFAULT_VOICE_NAME}</p>
     </div>
 `;
+const SORT_ASC = 'asc';
+const SORT_DESC = 'desc';
+const SELECTED_CLASS = 'selected';
+const HOVERED_CLASS = 'hovered';
+const REVERSE_CLASS = 'reverse';
+const TAG_ALL = 'all';
+const VOICES_JSON_FILE = 'assets/data/voices.json';
 
 /* variables definitions */
 
@@ -44,7 +57,7 @@ let filteredFavVoices = [];
 
 let sorting = null;
 
-let currentTag = 'all';
+let currentTag = TAG_ALL;
 let currentFilter = null;
 let selectedVoiceId = null;
 
@@ -55,7 +68,7 @@ getVoices();
 
 /** Detects when the sort icon has been clicked. */
 function sortClickListener() {
-    $('#sort-icon').on('click', function () {
+    $(`#${SORT_ICON}`).on('click', function () {
         onSortClicked();
     });
 }
@@ -83,7 +96,7 @@ function searchBarListener() {
 
 /** Detects when the voice image has been clicked and calls 'onVoiceClicked'. */
 function voiceClickListener(id, container) {
-    $(`.${container} .${PREFIX_ID}${id} .voice-image-container`).on('click', function () {
+    $(`.${container} .${PREFIX_ID}${id} .${VOICE_IMAGE_CONTAINER}`).on('click', function () {
         onVoiceClicked(id);
     });
 }
@@ -102,7 +115,7 @@ function hoverListener(id, container, hoveredClass, otherClass) {
 
 /** Detects the click on the fav icon. */
 function favIconClickListener(id, container) {
-    $(`.${container} .${PREFIX_ID}${id} .fav-icon-container`).on('click', function () {
+    $(`.${container} .${PREFIX_ID}${id} .${FAV_ICON_CONTAINER}`).on('click', function () {
         onFavIconClick(this);
     });
 }
@@ -135,7 +148,7 @@ document.addEventListener(
 
 /** Gets the data from the JSON thanks to jQuery. Dispatches an event once it's done, and sets 'jsonHasBeenRead' to true. */
 function getVoices() {
-    $.getJSON('assets/data/voices.json', (data) => {
+    $.getJSON(VOICES_JSON_FILE, (data) => {
         voices = data;
         filteredVoices = [...voices];
         jsonHasBeenRead = true;
@@ -152,7 +165,7 @@ function processData() {
 
 /** Does all the voices stuff. */
 function processVoices() {
-    injectVoices('pro-container', filteredVoices);
+    injectVoices(PRO_CONTAINER, filteredVoices);
     sortClickListener();
     randomClickListener();
     searchBarListener();
@@ -200,13 +213,13 @@ function injectVoices(container, voices) {
             voicesContainer.append(voiceHtml);
 
             // If we are injecting favourites, then it has to be already selected.
-            if (container === 'favourite-container') {
-                $(`.${PREFIX_ID}${voice.id} .fav-icon`).each(function () {
-                    $(this).addClass('selected');
+            if (container === FAV_CONTAINER) {
+                $(`.${PREFIX_ID}${voice.id} .${FAV_ICON}`).each(function () {
+                    $(this).addClass(SELECTED_CLASS);
                 });
                 // Check if the one from the non-favourites is selected.
-                if ($(`.pro-container .${PREFIX_ID}${voice.id}`).classList().includes('selected')) {
-                    $(`.${container} .${PREFIX_ID}${voice.id}`).addClass('selected');
+                if ($(`.${PRO_CONTAINER} .${PREFIX_ID}${voice.id}`).classList().includes(SELECTED_CLASS)) {
+                    $(`.${container} .${PREFIX_ID}${voice.id}`).addClass(SELECTED_CLASS);
                 }
             }
 
@@ -223,7 +236,7 @@ function sortVoices(voices) {
             if (a.name < b.name) return -1;
             return 0;
         });
-        if (sorting === 'desc') {
+        if (sorting === SORT_DESC) {
             orderedVoices = orderedVoices.reverse();
         }
     }
@@ -244,8 +257,8 @@ function removeVoices(container, voices) {
 function controlEvents(id, container) {
     voiceClickListener(id, container);
     favIconClickListener(id, container);
-    hoverListener(id, container, 'voice-image-container', 'fav-icon-container');
-    hoverListener(id, container, 'fav-icon-container', 'voice-image-container');
+    hoverListener(id, container, VOICE_IMAGE_CONTAINER, FAV_ICON_CONTAINER);
+    hoverListener(id, container, FAV_ICON_CONTAINER, VOICE_IMAGE_CONTAINER);
 }
 
 /** Filters the voices by hiding all of them first, and then showing the filtered ones. */
@@ -288,7 +301,7 @@ function getId(element) {
 /** Removes the 'selected' class from the voice that was selected. */
 function unselectOldVoice() {
     if (selectedVoiceId) {
-        $(`.${PREFIX_ID}${selectedVoiceId}`).removeClass('selected');
+        $(`.${PREFIX_ID}${selectedVoiceId}`).removeClass(SELECTED_CLASS);
     }
 }
 
@@ -296,7 +309,7 @@ function unselectOldVoice() {
 function selectVoice(id) {
     selectedVoiceId = id;
     $(`.${PREFIX_ID}${id}`).each(function () {
-        $(this).addClass('selected');
+        $(this).addClass(SELECTED_CLASS);
     });
 }
 
@@ -312,16 +325,16 @@ function selectVoice(id) {
 function onSortClicked() {
     setSorting();
 
-    removeVoices('pro-container', voices);
-    injectVoices('pro-container', voices);
+    removeVoices(PRO_CONTAINER, voices);
+    injectVoices(PRO_CONTAINER, voices);
     if (favVoices.length > 0) {
-        removeVoices('favourite-container', favVoices);
-        injectVoices('favourite-container', favVoices);
+        removeVoices(FAV_CONTAINER, favVoices);
+        injectVoices(FAV_CONTAINER, favVoices);
     }
 
     // Filters by tag since we re-painted everything without filters, so everything is still ordered even after changing the filters.
-    filterVoices(voices, 'pro-container');
-    filterVoices(favVoices, 'favourite-container');
+    filterVoices(voices, PRO_CONTAINER);
+    filterVoices(favVoices, FAV_CONTAINER);
 
     // Must remark as selected if it was selected
     if (selectedVoiceId) {
@@ -333,7 +346,7 @@ function onSortClicked() {
 function setSorting() {
     // add the 'selected' class
     if (sorting === null) {
-        $('#sort-icon').parent().addClass('selected');
+        $(`#${SORT_ICON}`).parent().addClass(SELECTED_CLASS);
     }
     sorting = getNewSortingValue();
     setReverseClass();
@@ -341,19 +354,19 @@ function setSorting() {
 
 /** Returns the new sorting value based on the old value. */
 function getNewSortingValue() {
-    if (sorting === 'asc') {
-        return 'desc';
+    if (sorting === SORT_ASC) {
+        return SORT_DESC;
     } else {
-        return 'asc';
+        return SORT_ASC;
     }
 }
 
 /** Adds the 'reverse' class to the sorting icon depending on the current sorting. */
 function setReverseClass() {
-    if (sorting === 'desc') {
-        $('#sort-icon').addClass('reverse');
+    if (sorting === SORT_DESC) {
+        $(`#${SORT_ICON}`).addClass(REVERSE_CLASS);
     } else {
-        $('#sort-icon').removeClass('reverse');
+        $(`#${SORT_ICON}`).removeClass(REVERSE_CLASS);
     }
 }
 
@@ -396,14 +409,14 @@ function onVoiceClicked(id) {
 
 /** Adds the class hovered to the element and the child with 'otherClass'. */
 function onMouseEnter(element, otherClass) {
-    $(element).addClass('hovered');
-    $(element).parent().find(`.${otherClass}`).addClass('hovered');
+    $(element).addClass(HOVERED_CLASS);
+    $(element).parent().find(`.${otherClass}`).addClass(HOVERED_CLASS);
 }
 
 /** Removes the class hovered to the element and the child with 'otherClass'. */
 function onMouseLeave(element, otherClass) {
-    $(element).removeClass('hovered');
-    $(element).parent().find(`.${otherClass}`).removeClass('hovered');
+    $(element).removeClass(HOVERED_CLASS);
+    $(element).parent().find(`.${otherClass}`).removeClass(HOVERED_CLASS);
 }
 
 /** If it is already on the fav list, then it removes the item from it. Otherwise, it's added to the list. */
@@ -411,16 +424,16 @@ function onFavIconClick(element) {
     const id = getId(element);
     if (favVoices && favVoices.map((voice) => voice.id).includes(id)) {
         const voice = removeFav(id, this);
-        removeVoices('favourite-container', [voice]);
+        removeVoices(FAV_CONTAINER, [voice]);
     } else {
         const voice = addFav(id, this);
         if (sorting) {
             // If it's sorting, the easier way to do it is to remove all voices, and then inject them back, since the inject funcion will order them.
-            removeVoices('favourite-container', favVoices);
-            injectVoices('favourite-container', favVoices);
+            removeVoices(FAV_CONTAINER, favVoices);
+            injectVoices(FAV_CONTAINER, favVoices);
             filterAllVoices();
         } else {
-            injectVoices('favourite-container', [voice]);
+            injectVoices(FAV_CONTAINER, [voice]);
         }
     }
     filteredFavVoices = [...favVoices];
@@ -431,7 +444,7 @@ function onFavIconClick(element) {
 function addFav(id, element) {
     const voice = filteredVoices.find((voice) => voice.id === id);
     favVoices.push(voice);
-    $(element).find('.fav-icon').addClass('selected');
+    $(element).find(`.${FAV_ICON}`).addClass(SELECTED_CLASS);
     return voice;
 }
 
@@ -439,29 +452,29 @@ function addFav(id, element) {
 function removeFav(id) {
     const favVoice = favVoices.find((voice) => voice.id === id);
     favVoices.splice(favVoices.indexOf(favVoice), 1);
-    $(`.pro-container .${PREFIX_ID}${id} .fav-icon-container .fav-icon`).removeClass('selected');
+    $(`.${PRO_CONTAINER} .${PREFIX_ID}${id} .${FAV_ICON_CONTAINER} .${FAV_ICON}`).removeClass(SELECTED_CLASS);
     return favVoice;
 }
 
 /** Shows or hides the fav contaner based on the array of filtered fav voices length. */
 function showOrHideFavContainer() {
     if (filteredFavVoices && filteredFavVoices.length > 0) {
-        $('.favourite-container').show();
+        $(`.${FAV_CONTAINER}`).show();
     } else {
-        $('.favourite-container').hide();
+        $(`.${FAV_CONTAINER}`).hide();
     }
 }
 
 /** Filters both the fav voices and the pro voices. */
 function filterAllVoices() {
-    filteredVoices = filterVoices(voices, 'pro-container');
-    filteredFavVoices = filterVoices(favVoices, 'favourite-container');
+    filteredVoices = filterVoices(voices, PRO_CONTAINER);
+    filteredFavVoices = filterVoices(favVoices, FAV_CONTAINER);
 }
 
 /** Filters the voice by a tag value. If the tag is 'all', then it restores the filter, showing all the voices. */
 function filterVoices(array, containerClass) {
     let filteredArray = [...array];
-    if (currentTag.toLowerCase() !== 'all') {
+    if (currentTag.toLowerCase() !== TAG_ALL) {
         filteredArray = filteredArray.filter((voice) => voice.tags && voice.tags.includes(currentTag));
     }
     if (currentFilter) {
