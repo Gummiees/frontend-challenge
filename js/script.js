@@ -51,14 +51,21 @@ let windowLoaded = false;
 
 /** Contains the raw data from the JSON file. It's necessary for it to be global. */
 let voices = [];
+/** Will contain a sub-array of voices or the entirety of it. Will contain the filtered ones. */
 let filteredVoices = [];
+/** Will contain the favourite voices chosen by the user. */
 let favVoices = [];
+/** Will contain the favourite voices chosen by the user with the applied filters. */
 let filteredFavVoices = [];
 
+/** Used to determine the current sorting. */
 let sorting = null;
 
+/** Used to determine the current tag filter. */
 let currentTag = TAG_ALL;
+/** Used to determine the current search bar filter. */
 let currentFilter = null;
+/** Used to determine the currently selected voice ID. */
 let selectedVoiceId = null;
 
 // No need to wait for the window to load to read the JSON file, I can do that while it renders.
