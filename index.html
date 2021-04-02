@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!--
         <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
         <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
     -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <title>Frontend challenge</title>
-</head>
-<body>
-    <div class="header flex-space-between">
-        <div class="search-bar flex-center">
-            <span class="search-icon flex-center">
-                <img src="assets/images/search.svg" alt="Search icon">
-            </span>
-            <input type="search" aria-label="Search" aria-describedby="search-addon" />
-        </div>
-        <div class="container flex-end">
-            <div class="categories flex-center">
-                <span class="left-header-icon flex-center">
-                    <img src="assets/images/filter.svg" alt="Filter icon">
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/styles.css" />
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+        <title>Frontend challenge</title>
+    </head>
+    <body>
+        <div class="header flex-space-between">
+            <div class="search-bar-container flex-center">
+                <span class="search-icon icon flex-center">
+                    <img src="assets/images/search.svg" alt="Search icon" />
                 </span>
-                <div class="select" id="tag-select" tabindex="1">
-                    <input class="selectopt" name="tag-select" type="radio" id="all" value="all" checked>
-                    <label for="all" class="option">All</label>
-                  </div>
+                <input id="search-bar" type="search" aria-label="Search" aria-describedby="search-addon" />
             </div>
-            <div class="order-selector flex-center">
-                <span class="left-header-icon flex-center">
-                    <img src="assets/images/order.svg" alt="Filter icon">
-                </span>
-                <div class="select" id="order-select" tabindex="1">
-                    <input class="selectopt" name="order-select" type="radio" id="popular" checked>
-                    <label for="popular" class="option">Popular</label>
-                    <input class="selectopt" name="order-select" type="radio" id="newest">
-                    <label for="newest" class="option">Newest</label>
-                  </div>
-            </div>
-            <div class="random-button">
-                <span class="left-header-icon flex-center">
-                    <img src="assets/images/button-random.svg" alt="Filter icon">
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="favourite-container" style="display: none;">
-            <div class="content-title">
-                <span>favourite voices</span>
-            </div>
-            <div class="row">
-            </div>
-        </div>
-        <div class="pro-container">
-            <div class="content-title">
-                <span>pro voices</span>
-            </div>
-            <div class="row">
+            <div class="container flex-end">
+                <div class="categories flex-center">
+                    <div class="icon-container flex-center">
+                        <div id="filter-icon" class="icon flex-center"></div>
+                    </div>
+                    <div class="select" id="tag-select" tabindex="1">
+                        <input class="selectopt" name="tag-select" type="radio" id="all" value="all" checked />
+                        <label for="all" class="option">All</label>
+                    </div>
+                </div>
+                <div class="sort-selector flex-center">
+                    <div class="icon-container flex-center">
+                        <div id="sort-icon" class="icon flex-center"></div>
+                    </div>
+                    <!-- <span id="sort-icon" class="left-header-icon icon flex-center">
+                        <img src="assets/images/order.svg" alt="Filter icon" />
+                    </span> -->
+                    <div class="select" id="order-select" tabindex="1">
+                        <input class="selectopt" name="order-select" type="radio" id="popular" checked />
+                        <label for="popular" class="option">Popular</label>
+                        <input class="selectopt" name="order-select" type="radio" id="newest" />
+                        <label for="newest" class="option">Newest</label>
+                    </div>
+                </div>
+                <div class="random-button">
+                    <div class="icon-container flex-center">
+                        <div id="random-icon" class="icon flex-center"></div>
+                    </div>
+                    <!-- <span id="random-icon" class="left-header-icon icon flex-center">
+                        <img src="assets/images/button-random.svg" alt="Filter icon" />
+                    </span> -->
+                </div>
             </div>
         </div>
-    </div>
-</body>
+        <div class="content">
+            <div class="favourite-container" style="display: none">
+                <div class="content-title">
+                    <span>favourite voices</span>
+                </div>
+                <div class="row"> </div>
+            </div>
+            <div class="pro-container">
+                <div class="content-title">
+                    <span>pro voices</span>
+                </div>
+                <div class="row"> </div>
+            </div>
+        </div>
+    </body>
 </html>

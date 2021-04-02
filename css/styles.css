@@ -1,26 +1,28 @@
 @font-face {
     font-family: 'Barlow';
     font-weight: 400;
-    src: local("Barlow Regular"), local("Barlow-Regular"), url("../assets/fonts/Barlow-Regular.ttf") format('truetype');
+    src: local('Barlow Regular'), local('Barlow-Regular'), url('../assets/fonts/Barlow-Regular.ttf') format('truetype');
 }
 
 :root {
-    --main-bg-color: #1B1B1B;
-    --light-color: #D2D2D2;
-    --title-color: #9c9c9c;
+    --main-bg-color: #1b1b1b;
+    --light-color: #d2d2d2;
+    --color: #9c9c9c;
     --dark-title-color: #424242;
     --selected-color: #00e5ff;
     --selected-light-color: #00c4ff;
 }
 
-
-body, input {
+body,
+input {
     font-family: 'Barlow', sans-serif;
     height: 100%;
 }
 
-
-body, input, .header, .content .content-title span {
+body,
+input,
+.header,
+.content .content-title span {
     background-color: var(--main-bg-color);
 }
 
@@ -61,12 +63,12 @@ body {
     z-index: 1;
 }
 
-.header .search-bar,
-.header .search-bar input {
+.header .search-bar-container,
+.header .search-bar-container input {
     color: white;
 }
 
-.header .search-bar {
+.header .search-bar-container {
     background-color: black;
     border-radius: 40px;
     height: 34px;
@@ -74,14 +76,14 @@ body {
     position: relative;
 }
 
-.header .search-bar .search-icon {
+.header .search-bar-container .search-icon {
     height: 20px;
     position: absolute;
     left: 5px;
     background: transparent;
 }
 
-.header .search-bar input {
+.header .search-bar-container input {
     background-color: transparent;
     border: none;
     margin-left: 60px;
@@ -89,12 +91,12 @@ body {
     width: 100%;
     font-size: 18px;
 }
-input[type="search"]::-webkit-search-cancel-button {
+input[type='search']::-webkit-search-cancel-button {
     -webkit-appearance: none;
     height: 20px;
     width: 20px;
     padding-right: 15px;
-    background: url("../assets/images/search-close.svg") no-repeat right center #000000;
+    background: url('../assets/images/search-close.svg') no-repeat right center #000000;
     background-origin: content-box;
 }
 
@@ -102,13 +104,16 @@ input[type="search"]::-webkit-search-cancel-button {
     margin-left: 5px;
 }
 
-.header .order-selector {
+.header .sort-selector {
     margin: 0 30px;
 }
 
-input:focus ,
+input:focus,
 .select:focus {
     outline-width: 0;
+}
+
+.icon.selected {
 }
 
 /* SELECT **/
@@ -123,7 +128,7 @@ input:focus ,
 }
 
 .select .option {
-    color: var(--title-color);
+    color: var(--color);
     padding: 0 30px 0 20px;
     min-height: 30px;
     display: flex;
@@ -153,7 +158,7 @@ input:focus ,
 .select:focus .option {
     position: relative;
     pointer-events: all;
-    background: #0F0F0F;
+    background: #0f0f0f;
     text-transform: capitalize;
 }
 
@@ -166,20 +171,21 @@ input:focus ,
 .select input:checked + label {
     order: 1;
     z-index: 2;
-    background :#000;
+    background: #000;
     border-top: none;
     position: relative;
     border-radius: 4px;
+    text-transform: capitalize;
 }
 
 .select:focus input:checked + label {
-    background :#000;
+    background: #000;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
 .select input:checked + label:after {
-    content: url("../assets/images/select-arrow.svg");
+    content: url('../assets/images/select-arrow.svg');
     position: absolute;
     right: 15px;
     top: 2px;
@@ -210,9 +216,9 @@ input:focus ,
 }
 
 .content .content-title {
-    color: var(--title-color);
+    color: var(--color);
     line-height: 0.1em;
-    border-bottom: 1px solid var(--dark-title-color); 
+    border-bottom: 1px solid var(--dark-title-color);
     text-align: center;
 }
 
@@ -236,13 +242,13 @@ input:focus ,
 .content .voice-container .voice-image-container {
     background: var(--light-color);
     border-radius: 50%;
-    overflow:hidden;
+    overflow: hidden;
 }
 .content .voice-container.selected .voice-image-container {
     background: linear-gradient(45deg, var(--selected-color) 0%, var(--selected-light-color) 100%);
 }
 
-.content .voice-container .fav-icon-container {
+.fav-icon-container {
     transition: opacity 0.25s ease-in-out;
 }
 .content .voice-container .fav-icon-container {
@@ -255,12 +261,37 @@ input:focus ,
     border-radius: 50%;
     opacity: 0;
 }
-.content .voice-container .fav-icon-container .fav-icon {
-    background-color: var(--light-color);
+
+.icon-container .icon {
+    background-color: var(--color);
+}
+
+#filter-icon {
+    width: 30px;
+    height: 30px;
+    -webkit-mask: url('../assets/images/filter.svg') no-repeat center;
+    mask: url('../assets/images/filter.svg') no-repeat center;
+}
+
+#sort-icon {
+    width: 20px;
+    height: 20px;
+    -webkit-mask: url('../assets/images/order.svg') no-repeat center;
+    mask: url('../assets/images/order.svg') no-repeat center;
+}
+
+#random-icon {
+    width: 32px;
+    height: 32px;
+    -webkit-mask: url('../assets/images/button-random.svg') no-repeat center;
+    mask: url('../assets/images/button-random.svg') no-repeat center;
+}
+
+#fav-icon {
     width: 15px;
     height: 15px;
-    -webkit-mask: url("../assets/images/voice-favourite-off.svg") no-repeat center;
-    mask: url("../assets/images/voice-favourite-off.svg") no-repeat center;
+    -webkit-mask: url('../assets/images/voice-favourite-off.svg') no-repeat center;
+    mask: url('../assets/images/voice-favourite-off.svg') no-repeat center;
 }
 
 .content .voice-container .voice-image-container.hovered,
@@ -272,8 +303,22 @@ input:focus ,
     opacity: 1;
 }
 
-.content .voice-container .fav-icon-container.hovered .fav-icon.selected {
+.icon-container.hovered .icon.selected {
     background-color: var(--selected-color);
+}
+
+.icon-container .icon {
+    transition: transform 0.25s ease-in-out;
+}
+
+.icon-container .icon:hover:not(.fav-icon),
+.icon-container .icon:active:not(.fav-icon),
+.icon-container.selected .icon:not(.fav-icon) {
+    background-color: var(--selected-color);
+}
+
+.icon-container .icon.reverse {
+    transform: scaleY(-1);
 }
 
 .content .voice-container .voice-label {
@@ -286,12 +331,13 @@ input:focus ,
     color: var(--selected-color);
 }
 
-.row>* {
+.row > * {
     padding: 0;
 }
 
 @media (min-width: 1200px) {
-    body, .header {
+    body,
+    .header {
         margin: 0 20%;
     }
 
