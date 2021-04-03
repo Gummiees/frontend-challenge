@@ -8,7 +8,6 @@ https://gummiees.github.io/frontend-challenge/
 ## TODO
 
 - Header must be responsive.
-- Collapse panels on mobile version.
 - Transition and some CSS transform when adding/removing favourites.
 
 ## CODING PROCESS
@@ -31,16 +30,13 @@ Also tested the HTML on https://validator.w3.org/, and no errors were found! ðŸŽ
 
 ### ANIMATIONS
 
-I added some **small animations**, not only to make it clearer, but also to make sure the user understands he did something, since he have time to see the effect on the icon. For example, on the sorting one:
+I added some **small animations**, not only to make it clearer, but also to make sure the user understands he did something, since he have time to see the effect on the icon.
 
-![CSS sorting effect](https://media.giphy.com/media/vW1lDM2EIA1xDU9S0x/giphy.gif)
+![CSS animations](https://media.giphy.com/media/2b3dEhTNqLbKTj3cZO/giphy.gif)
 
-As you can see on the image, I also made **the icons change color when being used or hovered/clicked**. This is to make sure the user understands, in this case, that the sorting is currently being applied. the hover is for the user to know that the button will do something.
+As you can see on the image, I also made **the icons change color when being used or hovered/clicked**, and appear with the pointer cursor. This is to make sure the user understands, in this case, that the sorting is currently being applied. the hover is for the user to know that the button will do something.
 
-An other small animation is the one for the caret on the selectors:
-
-![CSS caret effect](https://media.giphy.com/media/Xm1QZ7tsHs8hEUpaad/giphy.gif)
-
+I also show an other small animation for the caret on the selectors, also aviable on the collapsable containers, explained later.
 
 ### SVG ICONS 
 
@@ -61,6 +57,18 @@ Fav button for non-touchable screens:
 Fav button for touchable screens:
 
 ![Fav button for touchable screens](https://media.giphy.com/media/mzVaLWHQSQPUYkp2yJ/giphy.gif)
+
+### COLLAPSABLE VOICE CONTAINERS
+
+For small screens (mobiles), to make it easier for the user to move around the page, they can collapse the 'FAVOURITE VOICES' and 'PRO VOICES' containers. Let's say I have ABC and BCD as favourites, but I want to use the voice CDE. The user could search it, and so when he writes 'C', he will still see the big block of fav voices. He searches for 'CD', and same, he will see it again, bause of 'BCD'.
+
+If we imagine this case on real scale, lets say when he filters there are still 8 favourites. Either he writes the full voice name, or he will have to scroll too much, since he will only see two voices per row.
+
+One way to avoid that is what I thought about, give the user the option to collapse the favourites.
+
+![Collapse favourites](https://media.giphy.com/media/KU60jt0J4vAsRgsWBo/giphy.gif)
+
+An other option would be to show the matching voices on the same search bar, like a selector, but this feature would be complicated to implement. It could definetly give the user a better experience, but for this is unnecessary and there is not enough time.
 
 ### FONTS
 
