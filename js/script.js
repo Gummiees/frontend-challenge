@@ -35,6 +35,8 @@ const SORT_DESC = 'desc';
 const SELECTED_CLASS = 'selected';
 const HOVERED_CLASS = 'hovered';
 const REVERSE_CLASS = 'reverse';
+const ROTATE_CLASS = 'rotate';
+const HIDDEN_CLASS = 'hidden';
 const SEARCHBAR_ID = 'search-bar';
 const TAG_ALL = 'all';
 const VOICES_JSON_FILE = 'assets/data/voices.json';
@@ -118,12 +120,43 @@ function favIconClickListener(id, container) {
     });
 }
 
+function collapseIconClickListener() {
+    $('.collapse-icon').on('click', function () {
+        onCollapseIcon($(this).parent().parent());
+    });
+
+    $('.content-title').on('click', function () {
+        onCollapseIcon($(this).parent().parent());
+    });
+}
+
+function onCollapseIcon(element) {
+    if (element.classList().includes(HIDDEN_CLASS)) {
+        expandContainer(element);
+    } else {
+        collapseContainer(element);
+    }
+}
+
+function expandContainer(element) {
+    $(element).removeClass(HIDDEN_CLASS);
+    $(element).find('.row').show();
+    $(element).find('.collapse-icon').removeClass(ROTATE_CLASS);
+}
+
+function collapseContainer(element) {
+    $(element).addClass(HIDDEN_CLASS);
+    $(element).find('.row').hide();
+    $(element).find('.collapse-icon').addClass(ROTATE_CLASS);
+}
+
 window.onload = () => {
     windowLoaded = true;
     sortClickListener();
     randomClickListener();
     searchBarListener();
     firefoxHandler();
+    collapseIconClickListener();
     // If the JSON file has been read, the script can start to process the data.
     if (jsonHasBeenRead) {
         processData();
