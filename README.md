@@ -5,6 +5,27 @@ In this code I **do not** try to make it work in IE. If so, I would have to use 
 I tested the code for Chrome, Firefox, Edge and Opera (latest versions for each). Couldn't try on Safari since I don't have a Mac.
 
 https://gummiees.github.io/frontend-challenge/
+
+## INDEX
+
+  - [TODO](#todo)
+  - [CODING PROCESS](#coding-process)
+  - [CSS](#css)
+    - [W3C Validation](#w3c-validation)
+    - [ANIMATIONS](#animations)
+    - [SVG ICONS](#svg-icons)
+    - [FAV BUTTON](#fav-button)
+    - [COLLAPSABLE VOICE CONTAINERS](#collapsable-voice-containers)
+    - [FONTS](#fonts)
+    - [SELECTORS](#selectors)
+  - [JAVASCRIPT DETAILS](#javascript-details)
+    - [RANDOM VOICE](#random-voice)
+    - [FILTERING](#filtering)
+    - [`FirefoxFunctionalities`](#firefoxfunctionalities)
+    - [`getTags`](#gettags)
+  - [BOOTSTRAP](#bootstrap)
+  - [jQuery](#jquery)
+
 ## TODO
 
 - Header must be responsive.
