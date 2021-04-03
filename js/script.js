@@ -76,9 +76,16 @@ getVoices();
 
 /* LISTENERS */
 
+/** This function is used to close the menu for mobile when clicked wherever except the menu itself. It also closes it when the site is scrolled
+ * on mobile version.
+ */
 function domClickListener() {
     $('body').click((e) => {
         if ($(e.target).closest('.header').length || $('.header .container').hasClass(HIDDEN_CLASS)) return;
+        collapseHeader();
+    });
+    $('body').bind('touchmove', function (e) {
+        if ($('.header .container').hasClass(HIDDEN_CLASS)) return;
         collapseHeader();
     });
 }
