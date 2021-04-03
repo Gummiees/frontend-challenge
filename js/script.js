@@ -71,6 +71,9 @@ let currentFilter = null;
 /** Used to determine the currently selected voice ID. */
 let selectedVoiceId = null;
 
+/** Controls if the menu for the mobile version is closed. */
+let menuClosed = true;
+
 // No need to wait for the window to load to read the JSON file, I can do that while it renders.
 getVoices();
 
@@ -81,12 +84,12 @@ getVoices();
  */
 function domClickListener() {
     $('body').on({
-        touchmove: () => {
-            if ($('.header .container').hasClass(HIDDEN_CLASS)) return;
+        touchmove: (e) => {
+            if (menuClosed) return;
             collapseHeader();
         },
         click: (e) => {
-            if ($(e.target).closest('.header').length || $('.header .container').hasClass(HIDDEN_CLASS)) return;
+            if ($(e.target).closest('.header').length || menuClosed) return;
             collapseHeader();
         },
     });
@@ -154,7 +157,7 @@ function collapseIconClickListener() {
 
 /** Expands or collapses the header based on the classes the element has. */
 function onMenuIconClick() {
-    if ($('.header .container').classList().includes(HIDDEN_CLASS)) {
+    if (menuClosed) {
         expandHeader();
     } else {
         collapseHeader();
@@ -533,11 +536,13 @@ function filterVoices(array, containerClass) {
 
 /** Removes the hidden class from the header container. */
 function expandHeader() {
+    menuClosed = false;
     $('.header .container').removeClass(HIDDEN_CLASS);
 }
 
 /** Removes the hidden class from the header container. */
 function collapseHeader() {
+    menuClosed = true;
     $('.header .container').addClass(HIDDEN_CLASS);
 }
 
