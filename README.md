@@ -113,7 +113,7 @@ After this I debugged how it would look like even on an iPhone 5 with such a sma
 
 Also added a shadow to it and `border-bottom` because having the freedom to decide the mobile design meant I could go for what I think looks better.
 
-[Menu on the mobile version](https://i.ibb.co/BrGsZ1n/Sin-t-tulo.png)
+![Menu on the mobile version](https://i.ibb.co/D8YKCqr/Sin-t-tulo.png)
 
 ### FONTS
 
