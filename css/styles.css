@@ -280,7 +280,7 @@ input:focus,
     transform: rotate(0deg);
 }
 
-.content .row {
+.pro-container {
     margin: 40px 0;
 }
 

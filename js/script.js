@@ -461,7 +461,7 @@ function onFavIconClick(element) {
         }
     }
     filteredFavVoices = [...favVoices];
-    showOrHideFavContainer();
+    showOrHideContainer(filteredFavVoices);
 }
 
 /** Adds a voice to the fav list and sets the 'selected' class for that voice. Returns the added voice. */
@@ -481,8 +481,8 @@ function removeFav(id) {
 }
 
 /** Shows or hides the fav contaner based on the array of filtered fav voices length. */
-function showOrHideFavContainer() {
-    if (filteredFavVoices && filteredFavVoices.length > 0) {
+function showOrHideContainer(voices) {
+    if (voices && voices.length > 0) {
         $(`.${FAV_CONTAINER}`).show();
     } else {
         $(`.${FAV_CONTAINER}`).hide();
@@ -505,6 +505,7 @@ function filterVoices(array, containerClass) {
         filteredArray = filteredArray.filter((voice) => voice.name && voice.name.toLowerCase().includes(currentFilter));
     }
     filterVisibleContent(containerClass, filteredArray);
+    showOrHideContainer(filteredArray);
     return filteredArray;
 }
 
