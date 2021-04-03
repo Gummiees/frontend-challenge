@@ -7,10 +7,9 @@ I tested the code for Chrome, Firefox, Edge and Opera (latest versions for each)
 https://gummiees.github.io/frontend-challenge/
 ## TODO
 
-- Transition and some CSS transform when adding/removing favourites.
 - Header must be responsive.
 - Collapse panels on mobile version.
-- Show fav button on mobile version.
+- Transition and some CSS transform when adding/removing favourites.
 - `input[type='search']::-webkit-search-cancel-button` does not work for Mozilla. Implement a function where, if Mozilla, add HTML to the DOM displaying it, plus making a function that removes the text from the input. Basically do it manually.
 
 ## CODING PROCESS
@@ -108,3 +107,11 @@ function getTags(voices) {
     return tags;
 }
 ```
+
+## BOOTSTRAP
+
+I've imported Bootstrap just to use the grid system, which if desired, I could have done by hand, but since it's already done and there was no specified rule that said not to use any external CSS Framework, I decided to use it to save some time.
+
+## jQuery
+
+Same as Bootstrap, I've used to save some time, well, a lot of time in this case. I could have done everything with pure JS, but why do so when you always can work with jQuery? There is no real need of having to use pure JS without jQuery, at least as far as I know. It saves a lot of time, and it does not weight much, no reason not to use it.
