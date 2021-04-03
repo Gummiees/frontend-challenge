@@ -24,6 +24,11 @@ If they would, the ordering could be applied depending on this selector, so if y
 
 I tried to do the application as much pixel-pefect as I could in the given amount of time.
 
+### W3C Validation
+
+I tested the CSS code on https://jigsaw.w3.org/css-validator/, and ignoring the Bootstrap file, the problems come from `-webkit-mask`, which is not a standar feature (but implemented on all browsers I tested), and from `linear-gradient`, which I do not really understand since my code is `linear-gradient(45deg, color1, color2)` and the W3C validation is `linear-gradient([ [ [ <angle> | to [top | bottom] || [left | right] ],]? <color-stop>[, <color-stop>]+);`. I found this [on the MDN website](https://developer.mozilla.org/es/docs/Web/CSS/linear-gradient()), I was not able to find the official W3C definition on the W3C website.
+
+Also tested the HTML on https://validator.w3.org/, and no errors were found! 🎉
 
 ### ANIMATIONS
 
