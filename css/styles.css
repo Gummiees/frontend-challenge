@@ -68,6 +68,10 @@ body {
     color: white;
 }
 
+.header .search-bar-container input:focus {
+    border: none;
+}
+
 .header .search-bar-container {
     background-color: black;
     border-radius: 40px;
@@ -242,7 +246,7 @@ input:focus,
     overflow: hidden;
 }
 .content .voice-container.selected .voice-image-container {
-    background: linear-gradient(45deg, var(--selected-color) 0%, var(--selected-light-color) 100%);
+    background: linear-gradient(45deg, var(--selected-color), var(--selected-light-color));
 }
 
 .fav-icon-container {

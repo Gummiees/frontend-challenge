@@ -4,24 +4,20 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!--
-        <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
-        <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
-    -->
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/styles.css" />
-        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="js/script.js"></script>
+        <script src="js/jquery-3.6.0.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/script.js"></script>
         <title>Frontend challenge</title>
     </head>
     <body>
         <div class="header flex-space-between">
             <div class="search-bar-container flex-center">
                 <span class="search-icon icon flex-center">
-                    <img src="assets/images/search.svg" alt="Search icon" />
+                    <img src="assets/images/search.svg" alt="Search icon" aria-label="Search icon" />
                 </span>
-                <input id="search-bar" type="search" aria-label="Search" aria-describedby="search-addon" />
+                <input id="search-bar" type="search" aria-label="Search" />
             </div>
             <div class="container flex-end">
                 <div class="categories flex-center">
@@ -37,9 +33,6 @@
                     <div class="icon-container flex-center">
                         <div id="sort-icon" class="icon flex-center"></div>
                     </div>
-                    <!-- <span id="sort-icon" class="left-header-icon icon flex-center">
-                        <img src="assets/images/order.svg" alt="Filter icon" />
-                    </span> -->
                     <div class="select" id="order-select" tabindex="1">
                         <input class="selectopt" name="order-select" type="radio" id="popular" checked />
                         <label for="popular" class="option">Popular</label>
@@ -51,22 +44,19 @@
                     <div class="icon-container flex-center">
                         <div id="random-icon" class="icon flex-center"></div>
                     </div>
-                    <!-- <span id="random-icon" class="left-header-icon icon flex-center">
-                        <img src="assets/images/button-random.svg" alt="Filter icon" />
-                    </span> -->
                 </div>
             </div>
         </div>
         <div class="content">
-            <div class="favourite-container" style="display: none">
+            <div class="favourite-container" style="display: none" aria-labelledby="fav-title">
                 <div class="content-title">
-                    <span>favourite voices</span>
+                    <span id="fav-title">favourite voices</span>
                 </div>
                 <div class="row"> </div>
             </div>
-            <div class="pro-container">
+            <div class="pro-container" aria-labelledby="pro-title">
                 <div class="content-title">
-                    <span>pro voices</span>
+                    <span id="pro-title">pro voices</span>
                 </div>
                 <div class="row"> </div>
             </div>

@@ -127,14 +127,13 @@ function favIconClickListener(id, container) {
     });
 }
 
-/** Filters the list so it only shows the filtered values. */
-function onSearch(element) {
-    currentFilter = $(element).val();
-    filterAllVoices();
-}
-
 window.onload = () => {
     windowLoaded = true;
+    sortClickListener();
+    randomClickListener();
+    searchBarListener();
+    tagClickListener();
+    searchCancelButtonFirefox();
     // If the JSON file has been read, the script can start to process the data.
     if (jsonHasBeenRead) {
         processData();
@@ -166,23 +165,14 @@ function getVoices() {
 
 /** Processes the data obtained from the JSON, printing the voices, tags, etc. */
 function processData() {
-    processVoices();
-    processTags();
-}
-
-/** Does all the voices stuff. */
-function processVoices() {
     injectVoices(PRO_CONTAINER, filteredVoices);
-    sortClickListener();
-    randomClickListener();
-    searchBarListener();
+    processTags();
 }
 
 /** Does all the tags stuff. */
 function processTags() {
     const tags = getTags();
     injectTags(tags);
-    tagClickListener();
 }
 
 /**
@@ -266,6 +256,12 @@ function controlEvents(id, container) {
     favIconClickListener(id, container);
     hoverListener(id, container, VOICE_IMAGE_CONTAINER, FAV_ICON_CONTAINER);
     hoverListener(id, container, FAV_ICON_CONTAINER, VOICE_IMAGE_CONTAINER);
+}
+
+/** Filters the list so it only shows the filtered values. */
+function onSearch(element) {
+    currentFilter = $(element).val();
+    filterAllVoices();
 }
 
 /** Filters the voices by hiding all of them first, and then showing the filtered ones. */
@@ -489,6 +485,27 @@ function filterVoices(array, containerClass) {
     }
     filterVisibleContent(containerClass, filteredArray);
     return filteredArray;
+}
+
+function searchCancelButtonFirefox() {
+    if (navigator.userAgent.indexOf('Firefox') >= 0) {
+        $('#search-bar').on('focus', function () {
+            const found = $(this).parent().find('#cancel-icon');
+            if (found && found.length > 0) {
+                found.show();
+            } else {
+                const iconCancel =
+                    '<span id="cancel-icon" class="cancel-icon icon flex-center"><img src="assets/images/search-close.svg" alt="Search cancel icon" /></span>';
+                $(this).parent().append(iconCancel);
+            }
+        });
+        $('#search-bar').on('blur', function () {
+            const found = $(this).parent().find('#cancel-icon');
+            if (found && found.length > 0) {
+                found.hide();
+            }
+        });
+    }
 }
 
 /* JQUERY EXTRA FUNCTIONALITIES */
