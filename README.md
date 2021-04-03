@@ -35,9 +35,12 @@ https://gummiees.github.io/frontend-challenge/
 
 The steps I made was first do the mockup on plain HTML + CSS. Then converted to CSS3 variables. After that, I started with the JavaScript. While working with JavaScript, I also started to transform the CSS for mobile, doing 'mobile-first', so the media queries were not made with `max-with`, but with `min-width`.
 
-One important thing to know is that the selector for 'Popular/Newest' doesn't do anything, neither the icon with an eye. They have been developed with the same characteristics as the other selector or icons, but they do nothing since was not specified what the icon should do, and since the voices do not have creation dates or fav counts to order them. 
+One important thing to know is that the selector for 'Popular/Newest' doesn't do anything, neither the icon with an eye. They have been developed with the same characteristics as the other selector or icons, but they do nothing since:
 
-If they would, the ordering could be applied depending on this selector, so if you are selecting "Newest" and ascending, newers will come first. If it's descending, then the newers will come last.
+1. It was not specified what the icon should do.
+2. The voices do not have creation dates or fav counts to order them with the selector.
+
+If they would have creation dates or fav counts, the ordering could be applied depending on this selector, so if you are selecting "Newest" and ascending, newers would come first. If it's descending, then the newers would come last.
 
 ## CSS
 

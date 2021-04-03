@@ -76,6 +76,13 @@ getVoices();
 
 /* LISTENERS */
 
+function domClickListener() {
+    $('body').click((e) => {
+        if ($(e.target).closest('.header').length || $('.header .container').hasClass(HIDDEN_CLASS)) return;
+        collapseHeader();
+    });
+}
+
 /** Detects when the sort icon has been clicked. */
 function sortClickListener() {
     $(`#${SORT_ICON}`).on('click', () => onSortClicked());
@@ -120,17 +127,33 @@ function favIconClickListener(id, container) {
     });
 }
 
+/** Controls the click on the menu icon for mobile version. */
+function menuIconClickListener() {
+    $('#menu-icon').on('click', () => onMenuIconClick());
+}
+
+/** Controls the click on the collapse icon for mobile version. Also controls the click on the container title to do the same. */
 function collapseIconClickListener() {
     $('.collapse-icon').on('click', function () {
-        onCollapseIcon($(this).parent().parent());
+        onCollapseIconClick($(this).parent().parent());
     });
 
     $('.content-title').on('click', function () {
-        onCollapseIcon($(this).parent().parent());
+        onCollapseIconClick($(this).parent().parent());
     });
 }
 
-function onCollapseIcon(element) {
+/** Expands or collapses the header based on the classes the element has. */
+function onMenuIconClick() {
+    if ($('.header .container').classList().includes(HIDDEN_CLASS)) {
+        expandHeader();
+    } else {
+        collapseHeader();
+    }
+}
+
+/** Expands or collapses the container based on the classes the element has. */
+function onCollapseIconClick(element) {
     if (element.classList().includes(HIDDEN_CLASS)) {
         expandContainer(element);
     } else {
@@ -138,24 +161,14 @@ function onCollapseIcon(element) {
     }
 }
 
-function expandContainer(element) {
-    $(element).removeClass(HIDDEN_CLASS);
-    $(element).find('.row').show();
-    $(element).find('.collapse-icon').removeClass(ROTATE_CLASS);
-}
-
-function collapseContainer(element) {
-    $(element).addClass(HIDDEN_CLASS);
-    $(element).find('.row').hide();
-    $(element).find('.collapse-icon').addClass(ROTATE_CLASS);
-}
-
 window.onload = () => {
     windowLoaded = true;
+    domClickListener();
     sortClickListener();
     randomClickListener();
     searchBarListener();
     firefoxHandler();
+    menuIconClickListener();
     collapseIconClickListener();
     // If the JSON file has been read, the script can start to process the data.
     if (jsonHasBeenRead) {
@@ -507,6 +520,30 @@ function filterVoices(array, containerClass) {
     filterVisibleContent(containerClass, filteredArray);
     showOrHideContainer(filteredArray);
     return filteredArray;
+}
+
+/** Removes the hidden class from the header container. */
+function expandHeader() {
+    $('.header .container').removeClass(HIDDEN_CLASS);
+}
+
+/** Removes the hidden class from the header container. */
+function collapseHeader() {
+    $('.header .container').addClass(HIDDEN_CLASS);
+}
+
+/** Removes the hidden class from the content container, shows the row and removes the rotate class from the icon. */
+function expandContainer(element) {
+    $(element).removeClass(HIDDEN_CLASS);
+    $(element).find('.row').show();
+    $(element).find('.collapse-icon').removeClass(ROTATE_CLASS);
+}
+
+/** Removes the hidden class from the content container, hides the row and adds the rotate class from the icon. */
+function collapseContainer(element) {
+    $(element).addClass(HIDDEN_CLASS);
+    $(element).find('.row').hide();
+    $(element).find('.collapse-icon').addClass(ROTATE_CLASS);
 }
 
 /** Checks if the browser is Firefox. If so, does the necessary stuff to make the cancel icon for the search bar work. */
