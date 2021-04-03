@@ -403,6 +403,11 @@ input:focus,
     opacity: 1;
 }
 
+.icon-container,
+.voice-image-container {
+    cursor: pointer;
+}
+
 .icon-container .icon {
     transition: transform 0.25s ease-in-out;
 }
