@@ -15,6 +15,7 @@ https://gummiees.github.io/frontend-challenge/
     - [SVG icons](#svg-icons)
     - [Fav button](#fav-button)
     - [Collapsable voice containers](#collapsable-voice-containers)
+    - [Header](#header)
     - [Fonts](#fonts)
     - [Selectors](#selectors)
   - [JavaScript details](#javascript-details)
