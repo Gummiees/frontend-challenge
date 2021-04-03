@@ -80,13 +80,15 @@ getVoices();
  * on mobile version.
  */
 function domClickListener() {
-    $('body').click((e) => {
-        if ($(e.target).closest('.header').length || $('.header .container').hasClass(HIDDEN_CLASS)) return;
-        collapseHeader();
-    });
-    $('body').bind('touchmove', function (e) {
-        if ($('.header .container').hasClass(HIDDEN_CLASS)) return;
-        collapseHeader();
+    $('body').on({
+        touchmove: () => {
+            if ($('.header .container').hasClass(HIDDEN_CLASS)) return;
+            collapseHeader();
+        },
+        click: (e) => {
+            if ($(e.target).closest('.header').length || $('.header .container').hasClass(HIDDEN_CLASS)) return;
+            collapseHeader();
+        },
     });
 }
 
