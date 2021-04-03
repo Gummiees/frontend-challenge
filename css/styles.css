@@ -246,7 +246,7 @@ input:focus,
     overflow: hidden;
 }
 .content .voice-container.selected .voice-image-container {
-    background: linear-gradient(45deg, var(--selected-color), var(--selected-light-color));
+    background: linear-gradient(45deg, var(--selected-color), var(--selected-light-color) 100%);
 }
 
 .fav-icon-container {
