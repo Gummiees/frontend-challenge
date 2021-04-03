@@ -113,6 +113,8 @@ After this I debugged how it would look like even on an iPhone 5 with such a sma
 
 Also added a shadow to it and `border-bottom` because having the freedom to decide the mobile design meant I could go for what I think looks better.
 
+If the menu is open, it closes itself whenever the user clicks anywhere on the site except the menu, or when the user scrolls. I implemented this because, if the user is scrolling, then he does not care about the menu, the user is looking for certain voice, and the menu only occupies extra space.
+
 ![Menu on the mobile version](https://i.ibb.co/D8YKCqr/Sin-t-tulo.png)
 
 ### FONTS
