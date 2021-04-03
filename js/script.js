@@ -35,6 +35,7 @@ const SORT_DESC = 'desc';
 const SELECTED_CLASS = 'selected';
 const HOVERED_CLASS = 'hovered';
 const REVERSE_CLASS = 'reverse';
+const SEARCHBAR_ID = 'search-bar';
 const TAG_ALL = 'all';
 const VOICES_JSON_FILE = 'assets/data/voices.json';
 
@@ -75,40 +76,30 @@ getVoices();
 
 /** Detects when the sort icon has been clicked. */
 function sortClickListener() {
-    $(`#${SORT_ICON}`).on('click', function () {
-        onSortClicked();
-    });
+    $(`#${SORT_ICON}`).on('click', () => onSortClicked());
 }
 
 /** Detects when the random icon has been clicked and chooses a random voice from the filtered ones as being used. */
 function randomClickListener() {
-    $('#random-icon').on('click', function () {
-        onRandomClicked();
-    });
+    $('#random-icon').on('click', () => onRandomClicked());
 }
 
 /** Controls if a tag option has been clicked. */
 function tagClickListener() {
-    $('#tag-select .option').on('click', function () {
-        onTagClicked();
-    });
+    $('#tag-select .option').on('click', () => onTagClicked());
 }
 
 /** Detects when something is written on the search bar. */
 function searchBarListener() {
-    $(`#search-bar`).on('input', function () {
-        onSearch(this);
-    });
+    $(`#${SEARCHBAR_ID}`).on('input', () => onSearch());
 }
 
 /** Detects when the voice image has been clicked and calls 'onVoiceClicked'. */
 function voiceClickListener(id, container) {
-    $(`.${container} .${PREFIX_ID}${id} .${VOICE_IMAGE_CONTAINER}`).on('click', function () {
-        onVoiceClicked(id);
-    });
+    $(`.${container} .${PREFIX_ID}${id} .${VOICE_IMAGE_CONTAINER}`).on('click', () => onVoiceClicked(id));
 }
 
-/** Detects the hover on the class, and puts the 'hovered' class on both inputs. */
+/** Detects the hover on the class, and puts the 'hovered' class on both inputs. No arrow function because 'this' has to reference the functions scope. */
 function hoverListener(id, container, hoveredClass, otherClass) {
     $(`.${container} .${PREFIX_ID}${id} .${hoveredClass}`).on({
         mouseenter: function () {
@@ -120,7 +111,7 @@ function hoverListener(id, container, hoveredClass, otherClass) {
     });
 }
 
-/** Detects the click on the fav icon. */
+/** Detects the click on the fav icon. No arrow function because 'this' has to reference the functions scope. */
 function favIconClickListener(id, container) {
     $(`.${container} .${PREFIX_ID}${id} .${FAV_ICON_CONTAINER}`).on('click', function () {
         onFavIconClick(this);
@@ -132,8 +123,7 @@ window.onload = () => {
     sortClickListener();
     randomClickListener();
     searchBarListener();
-    tagClickListener();
-    searchCancelButtonFirefox();
+    firefoxHandler();
     // If the JSON file has been read, the script can start to process the data.
     if (jsonHasBeenRead) {
         processData();
@@ -173,6 +163,7 @@ function processData() {
 function processTags() {
     const tags = getTags();
     injectTags(tags);
+    tagClickListener();
 }
 
 /**
@@ -225,17 +216,15 @@ function injectVoices(container, voices) {
     }
 }
 
+/** Orders the given array of voices by the name. It also takes care of the current sorting direction. */
 function sortVoices(voices) {
     let orderedVoices = [...voices];
     if (voices && sorting) {
         orderedVoices = orderedVoices.sort((a, b) => {
-            if (a.name > b.name) return 1;
-            if (a.name < b.name) return -1;
+            if ((sorting === SORT_DESC && a.name < b.name) || (sorting !== SORT_DESC && a.name > b.name)) return 1;
+            if ((sorting === SORT_DESC && a.name > b.name) || (sorting !== SORT_DESC && a.name < b.name)) return -1;
             return 0;
         });
-        if (sorting === SORT_DESC) {
-            orderedVoices = orderedVoices.reverse();
-        }
     }
     return orderedVoices;
 }
@@ -259,8 +248,8 @@ function controlEvents(id, container) {
 }
 
 /** Filters the list so it only shows the filtered values. */
-function onSearch(element) {
-    currentFilter = $(element).val();
+function onSearch() {
+    currentFilter = $(`#${SEARCHBAR_ID}`).val();
     filterAllVoices();
 }
 
@@ -336,8 +325,7 @@ function onSortClicked() {
     }
 
     // Filters by tag since we re-painted everything without filters, so everything is still ordered even after changing the filters.
-    filterVoices(voices, PRO_CONTAINER);
-    filterVoices(favVoices, FAV_CONTAINER);
+    filterAllVoices();
 
     // Must remark as selected if it was selected
     if (selectedVoiceId) {
@@ -487,24 +475,85 @@ function filterVoices(array, containerClass) {
     return filteredArray;
 }
 
-function searchCancelButtonFirefox() {
+/** Checks if the browser is Firefox. If so, does the necessary stuff to make the cancel icon for the search bar work. */
+function firefoxHandler() {
     if (navigator.userAgent.indexOf('Firefox') >= 0) {
-        $('#search-bar').on('focus', function () {
-            const found = $(this).parent().find('#cancel-icon');
-            if (found && found.length > 0) {
-                found.show();
-            } else {
-                const iconCancel =
-                    '<span id="cancel-icon" class="cancel-icon icon flex-center"><img src="assets/images/search-close.svg" alt="Search cancel icon" /></span>';
-                $(this).parent().append(iconCancel);
-            }
+        const firefoxFunctionalities = new FirefoxFunctionalities(SEARCHBAR_ID);
+        firefoxFunctionalities.searchBarListener();
+        document.addEventListener(
+            firefoxFunctionalities.EVENT_NAME,
+            () => {
+                $(`#${SEARCHBAR_ID}`).val(null);
+                onSearch();
+            },
+            false
+        );
+    }
+}
+
+/**
+ * This code is necessary to implement the cancel icon for the search bar on Firefox, since in Firefox '::-webkit-search-cancel-button' does not work.
+ *
+ * I have used a class to simply demonstrate knowledge on vanilla JS classes and 'this' scopes.
+ */
+class FirefoxFunctionalities {
+    CANCEL_ICON_ID = 'cancel-icon';
+    CANCEL_ICON = `<span id="${this.CANCEL_ICON_ID}" class="${this.CANCEL_ICON_ID} icon flex-center"><img src="assets/images/search-close.svg" alt="Search cancel icon" /></span>`;
+    EVENT_NAME = 'clearSearchInputEvent';
+
+    constructor(SEARCHBAR_ID) {
+        $('.search-bar-container').addClass('firefox');
+        this.SEARCHBAR_ID = SEARCHBAR_ID;
+    }
+
+    /**
+     * Adds listeners to the search bar.
+     *
+     * Here I use an arrow function since I do not need the 'this' from jQuery. Instead I need the 'this' reference to the 'FirefoxFunctionalities'
+     * class. Arrow functions do not bind 'this' to the function scope, but to the parent scope. Thanks to that, I can reference the
+     * 'FirefoxFunctionalities' class.
+     */
+    searchBarListener() {
+        $(`#${this.SEARCHBAR_ID}`).on({
+            focus: () => {
+                this.onFocusSearchBar();
+            },
+            blur: () => {
+                this.onBlurSearchBar();
+            },
         });
-        $('#search-bar').on('blur', function () {
-            const found = $(this).parent().find('#cancel-icon');
-            if (found && found.length > 0) {
-                found.hide();
-            }
+    }
+
+    /** Shows or creates the cancel icon. */
+    onFocusSearchBar() {
+        let icon = $(`#${this.CANCEL_ICON_ID}`);
+        if (icon.length) {
+            icon.show();
+        } else {
+            $('.search-bar-container').append(this.CANCEL_ICON);
+            this.cancelIconListener();
+        }
+    }
+
+    /** Hides the cancel icon. The time out is necessary, so if there is a click on the icon, it will be detected before hiding it. */
+    onBlurSearchBar() {
+        let icon = $(`#${this.CANCEL_ICON_ID}`);
+        if (icon.length) {
+            setTimeout(() => {
+                icon.hide();
+            }, 100);
+        }
+    }
+
+    cancelIconListener() {
+        $(`#${this.CANCEL_ICON_ID}`).on('click', () => {
+            this.clearSeachInput();
         });
+    }
+
+    clearSeachInput() {
+        const event = new Event(this.EVENT_NAME);
+        document.dispatchEvent(event);
     }
 }
 

@@ -10,7 +10,6 @@ https://gummiees.github.io/frontend-challenge/
 - Header must be responsive.
 - Collapse panels on mobile version.
 - Transition and some CSS transform when adding/removing favourites.
-- `input[type='search']::-webkit-search-cancel-button` does not work for Mozilla. Implement a function where, if Mozilla, add HTML to the DOM displaying it, plus making a function that removes the text from the input. Basically do it manually.
 
 ## CODING PROCESS
 
