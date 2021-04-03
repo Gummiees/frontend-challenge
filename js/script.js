@@ -479,7 +479,6 @@ function filterVoices(array, containerClass) {
 function firefoxHandler() {
     if (navigator.userAgent.indexOf('Firefox') >= 0) {
         const firefoxFunctionalities = new FirefoxFunctionalities(SEARCHBAR_ID);
-        firefoxFunctionalities.searchBarListener();
         document.addEventListener(
             firefoxFunctionalities.EVENT_NAME,
             () => {
@@ -502,8 +501,9 @@ class FirefoxFunctionalities {
     EVENT_NAME = 'clearSearchInputEvent';
 
     constructor(SEARCHBAR_ID) {
-        $('.search-bar-container').addClass('firefox');
         this.SEARCHBAR_ID = SEARCHBAR_ID;
+        $('.search-bar-container').addClass('firefox');
+        this.searchBarListener();
     }
 
     /**

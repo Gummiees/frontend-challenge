@@ -86,6 +86,14 @@ I made the function so it will not choose the same random voice you already have
 
 In some cases, like for sorting, I chose the easier to code plus easier to understand way, and simply remove all the voices from the DOM, and print them again. For the filtering however, I decided to not do that, and hide all the voices at first, to then show only the filtered ones.
 
+### `FirefoxFunctionalities`
+
+The code related to the class is needed since Firefox does not implement the pseudo class `::-webkit-search-cancel-button`, and there is no cancel button at all for an input with `type=search`, so I had to implement it manually.
+
+This class was not necessary at all, but since it's a group of functions related only to Firefox, I decided to group them inside a class. With this, I can demonstrate some more knowlege about JS classes and `this` scope.
+
+For instance, on the `searchBarListener` method, I use arrow functions, so `this` has the parent scope, not the funcion one. In this case, the parent is the class, so I can call other funcions from the class.
+
 ### `getTags`
 
 At first I made the `getTags` function to return an Array, not a Set. Then I realized that, since I don't want any element repeated, using a Set made the code easier to read, and reduced the size of the function.
