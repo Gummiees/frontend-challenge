@@ -61,7 +61,7 @@ body {
 
 .header {
     width: 100%;
-    padding: 10px 15px 5px 15px;
+    padding: 10px 15px 10px 15px;
     z-index: 1;
     border-bottom: 1px solid var(--dark-color);
     position: fixed;
@@ -77,17 +77,19 @@ body {
 }
 
 .header .container {
-    overflow: hidden;
+    overflow: visible;
     opacity: 1;
     height: 75px;
-    transition: all 0.5s ease-out;
+    transition: opacity 0.5s ease-in, height 0.35s ease-out;
     padding: 5px 0;
 }
 
 .header .container.hidden {
+    overflow: hidden;
     height: 0;
     opacity: 0;
-    transition: all 0.5s ease-out;
+    padding: 0;
+    transition: opacity 0.5s ease-out, height 0.5s ease-out;
 }
 
 .header .container > * {
@@ -103,7 +105,6 @@ body {
     background-color: black;
     border-radius: 40px;
     height: 34px;
-    min-width: 250px;
     position: relative;
     flex: 1;
     margin-right: 20px;
@@ -160,6 +161,10 @@ input:focus,
     outline-width: 0;
 }
 
+.header .container .random-button {
+    margin-top: 5px;
+}
+
 /* SELECT **/
 
 .select {
@@ -171,6 +176,10 @@ input:focus,
     flex-direction: column;
     position: relative;
     cursor: pointer;
+}
+
+#tag-select {
+    z-index: 4;
 }
 
 .select .option {
@@ -274,6 +283,7 @@ input:focus,
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .content .content-title-container span {
@@ -468,6 +478,7 @@ input:focus,
         height: auto;
         transition: none;
         opacity: 1;
+        overflow: visible;
     }
 
     .header .sort-selector {
@@ -479,8 +490,13 @@ input:focus,
     }
 
     .header .search-bar-container {
+        min-width: 250px;
         flex: 0;
         margin-right: 0;
+    }
+
+    .header .container .random-button {
+        margin-top: 0;
     }
 
     .content {

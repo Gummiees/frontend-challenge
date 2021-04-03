@@ -8,7 +8,6 @@ https://gummiees.github.io/frontend-challenge/
 
 ## INDEX
 
-  - [TODO](#todo)
   - [Coding process](#coding-process)
   - [CSS](#css)
     - [W3C Validation](#w3c-validation)
@@ -25,11 +24,6 @@ https://gummiees.github.io/frontend-challenge/
     - [`getTags`](#gettags)
   - [Bootstrap](#bootstrap)
   - [jQuery](#jquery)
-
-## TODO
-
-- Header must be responsive.
-- Transition and some CSS transform when adding/removing favourites.
 
 ## CODING PROCESS
 
@@ -93,6 +87,32 @@ One way to avoid that is what I thought about, give the user the option to colla
 ![Collapse favourites](https://media.giphy.com/media/KU60jt0J4vAsRgsWBo/giphy.gif)
 
 An other option would be to show the matching voices on the same search bar, like a selector, but this feature would be complicated to implement. It could definetly give the user a better experience, but for this is unnecessary and there is not enough time.
+
+### HEADER
+
+The header was the trickest one for me. I firstly made it so it looked like the header on the mockup. Now I had to think of how to do it for mobile.
+
+That was not easy to begin with, because there was so much to pack into it, so I abstracted the important features, which I think is the search bar. I chose to take the other things are secondary.
+
+Having separated important from secondary, now I can make a clean header for mobile. The search bar would be the first thing to see on it, big enough to put some words and still see what you are filtering. The other stuff would be hidden unless the user asks to see it.
+
+To see the other stuff I decided to go for the obvious, a list button that you can find everywhere, which means the user is familiarized with it (hopefully).
+
+When you click it, it shows the other stuff with some nice animations that makes it smoother.
+
+The problem was that to make animations smooth, I needed a max-height. Thankfully since we know the height of the header, it was something that could be implemented.
+
+However, the positioning for this secondary stuff under the menu was not easy to decide. I wanted to base myself on the HTML structure I already had, otherwise I would have to go and change the jQuery, which meant that I could run into small bugs hard to find.
+
+After deciding the structure of the secondary stuff, I ran into an other problem, which demotivated me since this was the last step to do, and I didn't even think this would appear. The problem was showing the selector options. They were being cut of and not display after the header.
+
+Thankfully again, it was simply adding `overflow: visible` when the header is open.
+
+After this I debugged how it would look like even on an iPhone 5 with such a small screen, and still looking great.
+
+Also added a shadow to it and `border-bottom` because having the freedom to decide the mobile design meant I could go for what I think looks better.
+
+[Menu on the mobile version](https://i.ibb.co/BrGsZ1n/Sin-t-tulo.png)
 
 ### FONTS
 
